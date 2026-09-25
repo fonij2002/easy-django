@@ -26,6 +26,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # 3rd-party
+    # REST API-related
+    "rest_framework",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -108,4 +112,25 @@ MAILERS = {
     "default": {
         "BACKEND": "django.core.mail.backends.console.EmailBackend",
     },
+}
+
+########## djangorestframework ##########
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+########## drf-spectacular ##########
+# RUN `python manage.py spectacular --file schema.yml` to generate the schema
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Easy Django API Starter",
+    "DESCRIPTION": "A production-capable Django API foundation for maintainable business logic, admin workflows, and multi-client products.",
+    "VERSION": "1.0.0",
 }
