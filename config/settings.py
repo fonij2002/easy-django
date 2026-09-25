@@ -8,6 +8,7 @@ from environ import Env
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# https://github.com/joke2k/django-environ
 env = Env()
 env.read_env(str(Path(BASE_DIR) / ".env"))
 
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     # Security & Performance-related
     "debug_toolbar",
+    "admin_honeypot",
 ]
 
 MIDDLEWARE = [
