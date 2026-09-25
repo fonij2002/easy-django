@@ -1,0 +1,9 @@
+[project]
+name = "easy-django-api-starter"
+version = "0.1.0"
+description = "A production-capable Django API foundation for maintainable business logic, admin workflows, and multi-client products."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "django>=6.1.1",
+]
