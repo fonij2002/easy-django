@@ -10,3 +10,41 @@ dependencies = [
     "djangorestframework>=3.18.1",
     "drf-spectacular>=0.30.0",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.9",
+]
+
+[tool.ruff]
+line-length = 100
+src = [".", "apps"]
+exclude = [
+    "**/migrations/*.py",
+    "node_modules",
+    "static",
+    "staticfiles",
+    "templates",
+    ".venv",
+]
+
+[tool.ruff.lint]
+extend-select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "W",   # pycodestyle warnings
+    "I",   # isort (import sorting)
+    "UP",  # pyupgrade (modern Python syntax)
+    "B",   # flake8-bugbear
+    "DJ",  # flake8-django rules
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["your_project_name"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = true

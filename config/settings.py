@@ -131,6 +131,7 @@ REST_FRAMEWORK = {
 # RUN `python manage.py spectacular --file schema.yml` to generate the schema
 SPECTACULAR_SETTINGS = {
     "TITLE": "Easy Django API Starter",
-    "DESCRIPTION": "A production-capable Django API foundation for maintainable business logic, admin workflows, and multi-client products.",
+    "DESCRIPTION": "A production-capable Django API foundation for maintainable business logic, "
+    "admin workflows, and multi-client products.",
     "VERSION": "1.0.0",
 }
