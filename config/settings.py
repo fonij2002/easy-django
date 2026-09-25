@@ -1,3 +1,6 @@
+import os
+import socket
+import sys
 from pathlib import Path
 
 from environ import Env
@@ -30,6 +33,8 @@ INSTALLED_APPS = [
     # REST API-related
     "rest_framework",
     "drf_spectacular",
+    # Security & Performance-related
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -40,6 +45,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -58,7 +64,6 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "django.template.context_processors.request",
             ],
         },
     },
@@ -115,7 +120,7 @@ MAILERS = {
 }
 
 ########## djangorestframework ##########
-
+# https://github.com/encode/django-rest-framework
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
@@ -128,6 +133,7 @@ REST_FRAMEWORK = {
 }
 
 ########## drf-spectacular ##########
+# https://github.com/tfranzel/drf-spectacular
 # RUN `python manage.py spectacular --file schema.yml` to generate the schema
 SPECTACULAR_SETTINGS = {
     "TITLE": "Easy Django API Starter",
@@ -135,3 +141,9 @@ SPECTACULAR_SETTINGS = {
     "admin workflows, and multi-client products.",
     "VERSION": "1.0.0",
 }
+
+########## django-debug-toolbar ##########
+# https://github.com/django-commons/django-debug-toolbar
+hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+TESTING = "test" in sys.argv or "PYTEST_VERSION" in os.environ
